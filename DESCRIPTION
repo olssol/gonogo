@@ -1,0 +1,44 @@
+Package: gonogo
+Title: Go or No-go Decisions
+Version: 3.0
+Authors@R:
+    person(given = "Chenguang",
+           family = "Wang",
+           role = c("aut", "cre"),
+           email = "chenguang.wang.0517@gmail.com")
+Maintainer: Chenguang Wang <chenguang.wang.0517@gmail.com>
+Description: This R package implements functions for making go/no-go decisions
+License: GPL (>=3)
+Depends:
+    methods,
+    R (>= 3.5.0),
+    Rcpp (>= 1.0.2),
+    dplyr (>= 1.0),
+    ggplot2 (>= 3.3.5),
+    data.table (>= 1.14),
+    tidyr (>= 1.1)
+Imports:
+    methods,
+    Rcpp (>= 0.12.0),
+    RcppParallel (>= 5.0.1),
+    rstan (>= 2.18.1),
+    rstantools (>= 2.2.0)
+LinkingTo:
+    BH (>= 1.66.0),
+    Rcpp (>= 0.12.0),
+    RcppEigen (>= 0.3.3.3.0),
+    RcppParallel (>= 5.0.1),
+    rstan (>= 2.18.1),
+    StanHeaders (>= 2.18.0)
+Encoding: UTF-8
+LazyData: true
+NeedsCompilation: yes
+SystemRequirements: GNU make
+RoxygenNote: 7.2.3
+Suggests:
+    knitr,
+    shiny,
+    rmarkdown,
+    pander,
+    xtable
+VignetteBuilder: knitr

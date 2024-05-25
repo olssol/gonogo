@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>A Review of Proof-of-Concept Studies and Go/No-Go Decision-Making</title>
+<meta name="author" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="./reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="./reveal.js/dist/theme/serif.css" id="theme"/>
+
+<link rel="stylesheet" href="./presentation.css"/>
+<link rel="stylesheet" href="./reveal.js/plugin/highlight/zenburn.css"/>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide">
+<h1 class="title">A Review of Proof-of-Concept Studies and Go/No-Go Decision-Making</h1><p class="date">Created: 2024-05-15 Wed 10:44</p>
+</section>
+<section>
+<section id="slide-org0507d7c">
+<h2 id="org0507d7c">Proof-of-Concept (PoC) Trials</h2>
+<div class="outline-text-2" id="text-org0507d7c">
+</div>
+</section>
+<section id="slide-org1fc172d">
+<h3 id="org1fc172d">What is PoC?</h3>
+<ul>
+<li>A PoC <i>trial</i> is the first time an experimental compound is tested in patients
+against a clinically-relevant endpoint (Walley et al. 2015)</li>
+<li>&ldquo;PoC <i>[criteria]</i> is reached when the cumulative weight of evidence supports
+the belief that the drug is sufficiently likely to <i>reach the project
+objective</i> to justify the resources required for the next major cycle of
+investment&rdquo; (Paul Rolan)</li>
+<li>&ldquo;A PoC <i>trial</i> is a trial to support a PoC decision&rdquo; (Fisch et al. 2015)</li>
+<li>&ldquo;A PoC <i>trial</i> is the earliest point in the drug development process at which
+the weight of evidence suggests that it is ‘reasonably likely’ that the key
+attributes for success are present and the key causes of failure are absent&rdquo;
+(DiMasi, Hansen, and Grabowski 2003)
+<ul>
+<li>&ldquo;Should overcome all major hurdles that preclude a major commitment to
+further development&rdquo;</li>
+<li>&ldquo;PoC <i>[decision]</i> is <i>not generally viewed as being repeated at various
+stages</i> of the drug development process&rdquo;</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="slide-orgca99e53">
+<h3 id="orgca99e53">Study questions</h3>
+<ul>
+<li>The PoC should consider two questions (Fisch et al. 2015)
+<ul>
+<li>Does the drug work at all?
+<ul>
+<li>(<i>significance</i> (Fisch et al. 2015), <i>efficacy criterion</i>
+(Walley et al. 2015) )</li>
+
+</ul></li>
+<li>Does the drug have a relevant clinical effect?
+<ul>
+<li>(<i>relevance</i> (Fisch et al. 2015), <i>precision criterion</i> (Walley et al. 2015))</li>
+
+</ul></li>
+
+</ul></li>
+<li>Alternatively, <b>are we confident enough to commit to the full development of
+the drug?</b></li>
+<li>&ldquo;Statistical significance versus placebo alone will in general not be an
+appropriate PoC criterion&rdquo; (Fisch et al. 2015)
+<ul>
+<li>&ldquo;Drugs with minor average improvement relative to placebo will not be
+competitive even if found to be statistically significant&rdquo;</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="slide-orga3efa2d">
+<h3 id="orga3efa2d">General considerations</h3>
+<ul>
+<li>Requirements for being &ldquo;reasonably likely&rdquo; (i.e., &ldquo;Go&rdquo;) should
+(Cartwright et al. 2010)
+<ul>
+<li><i>increase</i> if the consequences of advancing an ineffective or unsafe drug
+are unusually serious (e.g., the drug is meant to substitute for an already
+effective drug for a life-threatening disease)</li>
+<li><i>decrease</i> if the benefits of advancing a new drug quickly are particularly
+high (e.g., a therapeutic for an epidemic)</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section>
+
+<ul>
+<li>Example questions (Cartwright et al. 2010)
+<ul>
+<li>Is this a breakthrough treatment in life-threatening disease for which there
+are no existing treatments?</li>
+<li>Is this a programs with low subsequent costs (costs of false-positive
+advancements are low)?</li>
+<li>Is this a programs with multiple backup candidates in the company pipeline
+(replacement of a candidate falsely terminated is cheap)</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section>
+
+<ul>
+<li>&ldquo;The human temptation to avoid learning negative truths must be routinely
+outweighed by <i>the discipline</i> of the organization&rdquo;
+(Cartwright et al. 2010)
+<ul>
+<li>&ldquo;Opinions are too easily shaped after seeing the actual results of the
+study&rdquo; (Cartwright et al. 2010)</li>
+<li>&ldquo;Commercial analyses show that the termination of candidate drugs is most
+cost-effective when the decision is made early&rdquo; (DiMasi, Hansen, and Grabowski 2003)</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="slide-orged63241">
+<h3 id="orged63241">A consistent Go/No-Go decision-making framework</h3>
+<ul>
+<li>Enables senior leaders to see consistency in the approach, with agreement on
+the criteria coming from agreeing the underlying assumptions and whether or
+not the operating characteristics are reasonable to enable clear decisions to
+be made (Frewer et al. 2016)</li>
+
+<li>Allows standard figures for displaying the criteria to be used and software
+developed to create them instantly (Frewer et al. 2016)</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgb433c83">
+<h2 id="orgb433c83">Go/No-Go Decision-Making</h2>
+<div class="outline-text-2" id="text-orgb433c83">
+</div>
+</section>
+<section id="slide-orgc3395c5">
+<h3 id="orgc3395c5">Recall the study questions</h3>
+<ul>
+<li>&ldquo;Does the drug work at all?&rdquo;</li>
+<li>&ldquo;Does the drug have a relevant clinical effect?&rdquo;</li>
+
+</ul>
+</section>
+<section id="slide-org91515ed">
+<h3 id="org91515ed">Lower reference value (LRV) and target value (TV)</h3>
+<ul>
+<li>Lower reference value (LRV)
+<ul>
+<li>A treatment effect threshold below which the drug would be assumed to have
+no value (Cartwright et al. 2010)</li>
+<li>The &rsquo;dignity&rsquo; line for developing a compound (Lalonde et al. 2007)</li>
+<li>The smallest clinically meaningful effect for the development of a
+compound (Frewer et al. 2016)</li>
+<li>The lowest level of efficacy that would be considered clinically meaningful
+(Frewer et al. 2016)</li>
+<li>The treatment effect of a competitor known to have mild efficacy
+(Lalonde et al. 2007)</li>
+<li>It may be set to \(0\) (i.e., assume no difference) in cases where there is no
+alternative treatment or where differences other than efficacy could be
+sufficient for commercialisation, but it is usually set at a mild efficacy
+effect in consideration of available therapies (Frewer et al. 2016)</li>
+<li>The downside case (minimum level of activity of clinical/commercial
+interest) in the target product profile (TPP) could be used as LRV
+(Frewer et al. 2016)</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section>
+
+<ul>
+<li>Target value (TV)
+<ul>
+<li>A market estimate of commercial viability (Lalonde et al. 2007)</li>
+<li>The desired effect to potentially establish the compound as the treatment of
+choice (Frewer et al. 2016)</li>
+<li>The desirable level of clinical activity, which would encourage physicians
+to switch their patients to the new treatment (Frewer et al. 2016)</li>
+<li>A competitive efficacy threshold below which the drug is not worth further
+evaluation (Fisch et al. 2015)</li>
+<li>Also known as the minimum clinically important difference, critical
+threshold, required difference, boundary of indifference, walk away point
+(Fisch et al. 2015)</li>
+<li>TV is generally smaller than the alternative treatment effect used in power
+calculation (Fisch et al. 2015)</li>
+<li>The base case (target level of activity) for an endpoint in the TPP could be
+used as TV (Frewer et al. 2016)</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="slide-orgc4a6c71">
+<h3 id="orgc4a6c71">Example I</h3>
+<ul>
+<li>(Lalonde et al. 2007)
+<ul>
+<li>In order to limit the risk of progressing a compound with relatively little
+efficacy, 80% confidence that the treatment effect, \(\Delta\), is better than
+LRV might be desired</li>
+<li>To avoid terminating a commercially viable compound with \(\Delta\) better than
+TV, 10% risk might be taken (Lalonde et al. 2007)</li>
+<li>Dual criteria (\(PCT_x\): the \(x\)-th percentile of the distribution of
+\(\widehat \Delta\))
+<ul>
+<li>Go: \(PCT_{20} > LRV\) and \(PCT_{90} > TV\)</li>
+<li>Stop: \(PCT_{90} \leq TV\)</li>
+<li>Consider: otherwise</li>
+
+</ul></li>
+
+</ul></li>
+
+</ul>
+
+
+<div id="orgb7ea0fc" class="figure">
+<p><img src="./Figures/gonogo/dual_criteria.png" alt="dual_criteria.png" height="200px" />
+</p>
+<p><span class="figure-number">Figure 1: </span>The left and right ends correspond to \(PCT_{20}\) and \(PCT_{90}\), respectively.</p>
+</div>
+</section>
+<section id="slide-org1a4a366">
+<h3 id="org1a4a366">Recall: Bayesian decision-making</h3>
+<ul>
+<li>A typical <i>Yes-No</i> decision \(\underline{P}(\Delta > \underline{R}|Data) >
+  \underline{C}\)
+<ul>
+<li>A <span class="underline">PRC</span> rule</li>
+<li>Based on the posterior probability of the treatment effect(or parameter of
+interest), \(P(\Delta|Data)\)</li>
+<li>Expresses the likelihood of achieving effect size \(R\)</li>
+<li>Utilizes the desired minimum probability as the threshold \(C\)</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="slide-org90c429f">
+<h3 id="org90c429f">Example II</h3>
+<ul>
+<li>(Fisch et al. 2015)
+<ul>
+<li>Significance (meeting LRV): \(P(\Delta > LRV | Data) \geq 1 - \alpha\)</li>
+<li>Relevance (meeting TV): \(P(\Delta > TV | Data) \geq \gamma\)</li>
+<li>\(LRV = 0\), \(TV = 5\%\), \(\alpha = 0.1\), and \(\gamma = 0.5\)</li>
+<li>Go: 1) meeting LRV only, or 2) meeting TV only, or 3) meeting both</li>
+<li>No-Go: 1) failing to meet LRV, or 2) failing to meet TV, or 3) failing to
+meet both</li>
+<li>Consider: Otherwise</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="slide-org166d164">
+<h3 id="org166d164">Example III</h3>
+<ul>
+<li>(Frewer et al. 2016)
+<ul>
+<li>Consider a randomized two-arm phase II oncology study with a PFS endpoint</li>
+<li>Base case in TPP: Median PFS 10 vs. 14.6 mths (HR=0.68)</li>
+<li>Downside case in TPP: Median PFS 10 vs. 12 mths (HR=0.83)</li>
+<li>The study was sized to show an HR of 0.68 with 90% power and 20% one-sided
+Type I error
+<ul>
+<li>126 events, 180 patients, assuming data maturity (fraction of patients
+with an observed event) of 70%</li>
+
+</ul></li>
+<li>Go: Observed HR better than \(0.72\)</li>
+<li>Stop: Observed HR worse than \(0.86\)</li>
+<li>Consider: Otherwise</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="slide-org53f7369">
+<h3 id="org53f7369">Choices of the probability thresholds</h3>
+<ul>
+<li>Recall
+<ul>
+<li>Meeting LRV: \(P(\Delta > LRV | Data) \geq C_1\)</li>
+<li>Meeting TV: \(P(\Delta > TV | Data) \geq C_2\)</li>
+
+</ul></li>
+<li>What should be \(C_1\) and \(C_2\)?
+<ul>
+<li>e.g., The standard approach with AstraZeneca in early development is to use <i>10%
+for the false stop risk and 20% for false go risk</i></li>
+<li>\(C_1\) for LRV is related to type I error</li>
+<li>\(C_2\) for TV is related to power</li>
+
+</ul></li>
+
+</ul>
+<ul>
+<li>An alternative common choice of \(C_2\) is \(0.5\) (Walley et al. 2015)
+<ul>
+<li>Fix \(C_2=0.5\) and then to determine TV with this probability threshold in mind</li>
+<li>Typically, this criterion is equivalent to comparing the observed effect
+estimate to TV. That is, <i>TV becomes MDD</i></li>
+<li>This approach essentially defines TV as the efficacy boundary between
+compounds that we would prefer not to develop further and those that we
+would</li>
+
+</ul></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orge26f84f">
+<h2 id="orge26f84f">Operating characteristics (OCs)</h2>
+<div class="outline-text-2" id="text-orge26f84f">
+</div>
+</section>
+<section id="slide-org2428122">
+<h3 id="org2428122">What OCs can be associated with a Go/No-Go decision?</h3>
+<ul>
+<li>(Lalonde et al. 2007)
+<ul>
+<li>Probability of trial &ldquo;success&rdquo;, i.e., probability of &ldquo;Go&rdquo;</li>
+<li>Probability of a &ldquo;correct&rdquo; decision
+<ul>
+<li>e.g., the truth is \(\Delta \leq TV\), and the decision is &ldquo;Stop&rdquo;; or the
+truth is \(\Delta \geq TV\) and the decision is &ldquo;Go&rdquo;</li>
+
+</ul></li>
+
+</ul></li>
+<li>(Frewer et al. 2016)
+<ul>
+<li>False stop risk
+<ul>
+<li>similar to type 2 error</li>
+
+</ul></li>
+<li>False go risk
+<ul>
+<li>similar to type I error</li>
+
+</ul></li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="slide-org1b7a947">
+<h3 id="org1b7a947">Examples</h3>
+
+<div id="org510c477" class="figure">
+<p><img src="./Figures/gonogo/fisch_2.png" alt="fisch_2.png" height="400px" />
+</p>
+<p><span class="figure-number">Figure 2: </span>(Fisch et al. 2015): For a given sample size, the probabilities of Go/No-Go for different true treatment effects</p>
+</div>
+
+</section>
+<section>
+
+
+<div id="org0dc0d7f" class="figure">
+<p><img src="./Figures/gonogo/frewer_1.png" alt="frewer_1.png" height="400px" />
+</p>
+<p><span class="figure-number">Figure 3: </span>(Frewer et al. 2016): For a given sample size, the probabilities of Go/No-Go vs. different true treatmers</p>
+</div>
+
+</section>
+<section>
+
+<div id="orgeabe2fb" class="figure">
+<p><img src="./Figures/gonogo/frewer_2.png" alt="frewer_2.png" height="400px" />
+</p>
+<p><span class="figure-number">Figure 4: </span>(Frewer et al. 2016): For different treatment effects, the probabilities of Go/No-Go vs. sample size</p>
+</div>
+
+</section>
+<section>
+
+<div id="org2ebecb7" class="figure">
+<p><img src="./Figures/gonogo/walley_1.png" alt="walley_1.png" height="400px" />
+</p>
+<p><span class="figure-number">Figure 5: </span>(Walley et al. 2015): Observed treatment effect boundary for Go/No-Go</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgc84d75e">
+<h2 id="orgc84d75e">Discussion</h2>
+<div class="outline-text-2" id="text-orgc84d75e">
+</div>
+</section>
+<section id="slide-org82c8caf">
+<h3 id="org82c8caf">Understand PoC</h3>
+<ul>
+<li>What are the differences between phase 1, 2, 3 trials and PoC trials?</li>
+<li>What are your questions for a PoC trial?</li>
+<li>How confident will you be after a PoC trial to commit to a full development of
+the drug?</li>
+<li>Other questions?</li>
+
+</ul>
+</section>
+<section id="slide-org1778a05">
+<h3 id="org1778a05">Summary of concepts</h3>
+<ul>
+<li>LRV</li>
+<li>TV</li>
+<li>Dual criteria</li>
+<li>Operating characteristics</li>
+
+</ul>
+</section>
+</section>
+</div>
+</div>
+<script src="./reveal.js/dist/reveal.js"></script>
+<script src="./reveal.js/plugin/markdown/markdown.js"></script>
+<script src="./reveal.js/plugin/highlight/highlight.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: false,
+rollingLinks: false,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+overview: true,
+margin: 0.10,
+
+transition: 'convex',
+transitionSpeed: 'default',
+
+// Plugins with reveal.js 4.x
+plugins: [ RevealMarkdown, RevealHighlight ],
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+]
+
+});
+</script>
+</body>
+</html>
