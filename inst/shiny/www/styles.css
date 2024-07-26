@@ -1,5 +1,5 @@
 body {
-    background-color:#f5f5f5;
+    /*background-color:#f5f5f5;*/
 }
 
 #mainpage{
@@ -8,10 +8,11 @@ body {
 }
 
 .well {
-    border-radius:4px;
-    background:#F0F0F5;
+    border-radius:3px;
+    /*background:#F0F0F5;*/
     padding: 20px 20px 20px 20px;
-    box-shadow:0 1px 2px rgba(0,0,0,0.3)
+    margin:  5px 0px 5px 0px;
+    /*box-shadow:0 1px 2px rgba(0,0,0,0.3)*/
 }
 
 .nav {
@@ -32,7 +33,7 @@ body {
     background-color: rgba(0, 0, 0, 0.26);
     /*background-image: url(texturebg.png);*/
     padding: 0px 0px 0px 30px;
-    margin:  -40px -40px 20px -40px;
+    margin:  -38px -40px 20px -40px;
 }
 
 #mainpanel.nav-pills a {
@@ -56,7 +57,7 @@ hline, .hline, h4, .h4 {
     font-size: 1.1em;
     font-weight: 400;
     letter-spacing: 0em;
-    color: #DD4814;
+    /*color: #DD4814;*/
     text-transform: capitalize;
 }
 
@@ -69,6 +70,12 @@ hline, .hline, h4, .h4 {
 
 h6 {
     font-family: "Oswald",sans-serif;
+}
+
+.card-header {
+    font-family: "Oswald",sans-serif;
+    font-size: 1.4em;
+    font-weight: 400;
 }
 
 /*-----------header and footer-------------*/

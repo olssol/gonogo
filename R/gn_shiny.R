@@ -11,8 +11,7 @@
 #'
 gn_shiny <- function(appname = "shiny", pkgname = "gonogo") {
 
-    req_pkgs        <- c("shiny", "shinythemes", "DT",
-                         "knitr", "rmarkdown", "pander");
+    req_pkgs        <- c("shiny", "DT", "bsicon", "plotly")
     chk_uninstalled <- sapply(req_pkgs,
                               function(x) {
         !requireNamespace(x, quietly = TRUE)

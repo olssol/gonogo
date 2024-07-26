@@ -8,6 +8,15 @@
 ##------------------------------------------------------------------------------
 ##------------------------------------------------------------------------------
 
+tip_txt <- function(label, message, placement = "bottom") {
+    label |>
+        span(
+            tooltip(
+                bs_icon("info-circle"),
+                message,
+                placement = placement))
+}
+
 txt_all <- function(type) {
     rst <- NULL
 
@@ -51,9 +60,9 @@ txt_all <- function(type) {
 
     if ("dec2simp" == type) {
         rst <- "<p> 'Go' if the probability that the treatment effect better than
-                'Treatment Effect Threshold' is more than 'Probability Threshold 1';
-                'No o' if the probability that the treatment effect better than
-                'Treatment Effect Threshold' is less than 'Probability Threshold 2'.
+                'Treatment Effect Threshold' is more than 'Probability Threshold for Go';
+                'No-Go' if the probability that the treatment effect better than
+                'Treatment Effect Threshold' is less than 'Probability Threshold for No-Go'.
                </p>"
     }
 
@@ -63,28 +72,28 @@ txt_all <- function(type) {
 
 panel_explore_setting <- function(suffix = 2) {
     div(
-        sliderInput(paste("inLRV", suffix, sep = ""),
+        sliderInput(paste("in4LRV", suffix, sep = ""),
                     "LRV",
                     value = 0,
                     min  = 0,
                     max  = 1,
                     step = 0.01),
 
-        sliderInput(paste("inThreshLRV", suffix, sep = ""),
+        sliderInput(paste("in4ThreshLRV", suffix, sep = ""),
                     "Probability threshold meeting LRV",
                     value = 0.8,
                     min  = 0,
                     max  = 1,
                     step = 0.01),
 
-        sliderInput(paste("inTV", suffix, sep = ""),
+        sliderInput(paste("in4TV", suffix, sep = ""),
                     "TV",
                     value = 0,
                     min  = 0,
                     max  = 1,
                     step = 0.01),
 
-        sliderInput(paste("inThreshTV", suffix, sep = ""),
+        sliderInput(paste("in4ThreshTV", suffix, sep = ""),
                     "Probability threshold meeting TV",
                     value = 0.1,
                     min  = 0,
@@ -104,14 +113,14 @@ panel_explore_setting_simp <- function(suffix = 2) {
                     step = 0.01),
 
         sliderInput(paste("inThreshLRV", suffix, sep = ""),
-                    "Probability threshold 1",
+                    "Probability Threshold for Go",
                     value = 0.8,
                     min  = 0,
                     max  = 1,
                     step = 0.01),
 
         sliderInput(paste("inThreshTV", suffix, sep = ""),
-                    "Probability threshold 2",
+                    "Probability Threshold for No-Go",
                     value = 0.1,
                     min  = 0,
                     max  = 1,
@@ -132,13 +141,13 @@ panel_dec_para_simp <- function() {
         column(3,
                numericInput(
                    "inThreshLRV",
-                   "Probability Threshold 1",
+                   "Probability Threshold for Go",
                    value = 0.8,
                    min = 0, max = 1, step = 0.01)),
         column(3,
                numericInput(
                    "inThreshTV",
-                   "Probability Threshold 2",
+                   "Probability Threshold for No-Go",
                    value = 0.1,
                    min = 0, max = 1, step = 0.01)
                )
@@ -150,7 +159,7 @@ panel_dec_para <- function() {
         msg_box(txt_all("dec2")),
         column(6,
                wellPanel(
-                   style  = "background: gray90; height: 270px",
+                   style  = "height: 270px",
                    fluidRow(
                        column(6,
                               h4("Low Reference Value (LRV)"),
@@ -184,7 +193,7 @@ panel_dec_para <- function() {
 
         column(6,
                wellPanel(
-                   style  = "background: gray90; height: 270px",
+                   style  = "height: 270px",
                    fluidRow(
                        column(6,
                               h4("Go Criteria"),
@@ -238,19 +247,16 @@ panel_bin_prior <- function() {
                  beta prior that corresponds prior data of 0.25 success
                  and 0.25 failure."),
 
-        fluidRow(
-        column(3,
-               textInput("prior_trt",
-                         "Prior for treatment",
-                         "0.25, 0.25")),
+        textInput("prior_trt",
+                  "Prior for treatment",
+                  "0.25, 0.25"),
 
         conditionalPanel(
             condition = "input.arm == 'Two-arm randomized study'",
-            column(3,
-                   textInput("prior_ctrl",
-                             "Prior for control",
-                             "0.25, 0.25"))
-        ))
+            textInput("prior_ctrl",
+                      "Prior for control",
+                      "0.25, 0.25")
+        )
     )
 }
 
@@ -288,68 +294,73 @@ tab_slides <- function() {
 
 ## basic design parameters
 tab_basic <- function() {
-    tabPanel("Design Parameters",
+    tabPanel("Design",
              wellPanel(
                  msg_box("Please specify the parameters of the clinical study,
                           the simulation, and the decision criteria.")
              ),
 
+             card(
+                 full_screen = TRUE,
+                 card_header("Study Design"),
+                 card_body(
+                     fill = FALSE,
+                     layout_columns(
+                         col_widths = c(3, 6),
+                         card(
+                             h4("Study and Outcome"),
+                                radioButtons("arm",
+                                             "",
+                                             c("Single arm study",
+                                               "Two-arm randomized study"),
+                                             "Single arm study",
+                                             inline = FALSE),
+
+                                selectInput(inputId = "dist",
+                                            label = "",
+                                            choices = list("Binary",
+                                                           "Continuous",
+                                                           "Count",
+                                                           "Time-to-event"),
+                                            selected = "Binary"),
+
+                                conditionalPanel(
+                                    condition = "input.arm == 'Two-arm randomized study'",
+                                    radioButtons("method",
+                                                 tip_txt("Posterior Probability Calulation",
+                                                         txt_all("grid")),
+                                                 c("Grid", "Resampling"),
+                                                 "Resampling",
+                                                 inline = TRUE))
+                         ),
+
+                         card(
+                             h4("Specify Priors"),
+                             conditionalPanel(
+                                 condition = "input.dist == 'Binary'",
+                                 panel_bin_prior()
+                             ),
+
+                             conditionalPanel(
+                                 condition = "input.dist != 'Binary'",
+                                 "The prior information panel will be added."
+                             ),
+
+                             checkboxInput("inChkShowPrior",
+                                           "Show prior distributions",
+                                           FALSE),
+
+                             conditionalPanel(
+                                 condition = "input.inChkShowPrior == true",
+                                 style = "padding: 10px; height: 420px",
+                                 plotOutput("pltPriors", height = "350px")
+                             )
+                         )
+                     ))
+             ),
+
              wellPanel(
-                 h3("Design Parameters"),
-                 fluidRow(
-                     column(3,
-                            h4("Study and Outcome"),
-                            radioButtons("arm",
-                                         "",
-                                         c("Single arm study",
-                                           "Two-arm randomized study"),
-                                         "Single arm study",
-                                         inline = FALSE),
-
-                            selectInput(inputId = "dist",
-                                        label = "",
-                                        choices = list("Binary",
-                                                       "Continuous",
-                                                       "Count",
-                                                       "Time-to-event"),
-                                        selected = "Binary"),
-
-                            conditionalPanel(
-                                condition = "input.arm == 'Two-arm randomized study'",
-                                msg_box(txt_all("grid")),
-                                radioButtons("method",
-                                             "Posterior Probability Calulation",
-                                             c("Grid", "Resampling"),
-                                             "Resampling",
-                                             inline = TRUE))
-                            ),
-                     column(9,
-                            h4("Specify Priors"),
-                            conditionalPanel(
-                                condition = "input.dist == 'Binary'",
-                                panel_bin_prior()),
-
-                            conditionalPanel(
-                                condition = "input.dist != 'Binary'",
-                                fluidRow(
-                                column(9,
-                                       "The prior information panel will be added."))
-                            ),
-
-                            checkboxInput("inChkShowPrior",
-                                          "Show prior distributions",
-                                          FALSE),
-
-                            conditionalPanel(
-                                condition = "input.inChkShowPrior == true",
-                                style = "padding: 10px; height: 420px",
-                                plotOutput("pltPriors", height = "350px")
-                            )
-                            )
-                 )),
-
-             wellPanel(
-                 h3("Decision-Making Parameters"),
+                 h3("Decision-Making"),
                  checkboxInput("inChkDecSimp",
                                "Use the simplified version",
                                value = TRUE),
@@ -366,11 +377,11 @@ tab_basic <- function() {
              ),
 
              wellPanel(
-                 h3("Simulation Study Parameters"),
+                 h3("Simulation Study"),
                  fluidRow(
                      column(3,
                             numericInput(inputId = "inNSimu",
-                                         label   = "Number of simulations:",
+                                         label   = "Number of simulations",
                                          value   = 200),
                             ),
                      column(3,
@@ -401,47 +412,46 @@ tab_pp <- function() {
 
              wellPanel(
                  h3("Observed Data"),
-                 fluidRow(
-                     column(3,
-                            sliderInput("size_trt",
-                                        label = "Treatment size",
-                                        value = 50,
-                                        min = 20,
-                                        max = 300)),
-                     column(3,
-                            sliderInput("n_suc_trt",
-                                        label = "Observed treatment successes",
-                                        value = 30,
-                                        min = 0,
-                                        max = 300)
-                            ),
+                 layout_columns(
+                     card(numericInput("size_trt",
+                                       label = tip_txt("Treatment Size",
+                                                       "Sample size of the treatment arm"),
+                                       value = 50,
+                                       min = 20,
+                                       max = 300),
+                          numericInput("n_suc_trt",
+                                       label = "Observed treatment successes",
+                                       value = 30,
+                                       min = 0,
+                                       max = 300)
+                          ),
 
-                     conditionalPanel(
-                         condition = "input.arm == 'Two-arm randomized study'",
-                         column(3,
-                                sliderInput("size_ctrl",
-                                            label = "Control size",
-                                            value = 50,
-                                            min = 20,
-                                            max = 300)),
-                         column(3,
-                                sliderInput("n_suc_ctrl",
-                                            label = "Observed control successes",
-                                            value = 10,
-                                            min = 0,
-                                            max = 300))
+                     card(
+                         conditionalPanel(
+                             condition = "input.arm == 'Two-arm randomized study'",
+                             card(numericInput("size_ctrl",
+                                               label = "Control size",
+                                               value = 50,
+                                               min = 20,
+                                               max = 300),
+                                  numericInput("n_suc_ctrl",
+                                               label = "Observed control successes",
+                                               value = 10,
+                                               min = 0,
+                                               max = 300))
+                         ),
+
+                         conditionalPanel(
+                             condition = "input.arm != 'Two-arm randomized study'",
+                             numericInput(inputId = "rate_ctrl",
+                                          label = "Assumed rate for control arm:",
+                                          value = 0.2,
+                                          min = 0,
+                                          max = 1,
+                                          step = 0.01))
                      ),
 
-                     conditionalPanel(
-                         condition = "input.arm != 'Two-arm randomized study'",
-                         column(3,
-                                numericInput(inputId = "rate_ctrl",
-                                             label = "Assumed rate for control arm:",
-                                             value = 0.2,
-                                             min = 0,
-                                             max = 1,
-                                             step = 0.01))
-                     )
+                     col_widths = c(3, 3)
                  )),
 
              wellPanel(
@@ -484,7 +494,7 @@ tab_pp <- function() {
                  fluidRow(
                      column(3,
                             wellPanel(
-                                style = "background: #e4dee7d1; height: 700px",
+                                style = "height: 710px",
                                 h4("Setting"),
                                 conditionalPanel(
                                     condition = "input.inChkDecSimp == true",
@@ -527,7 +537,7 @@ tab_pp <- function() {
 
                      column(9,
                             wellPanel(
-                                style = "background: #e4dee7d1; height: 700px",
+                                style = "height: 710px",
                                 tabsetPanel(
                                     id = "tabDec",
                                     tabPanel("Decision Table",
@@ -592,7 +602,7 @@ tab_opc <- function() {
                  fluidRow(
                      column(3,
                             wellPanel(
-                                style = "background: #e4dee7d1; height: 700px",
+                                style = "height: 700px",
                                 h4("Setting"),
                                 conditionalPanel(
                                     condition = "input.inChkDecSimp == true",
@@ -637,7 +647,7 @@ tab_opc <- function() {
                             ),
                      column(9,
                             wellPanel(
-                                style = "background: #e4dee7d1; height: 700px",
+                                style = "height: 700px",
                                 tabsetPanel(
                                     id = "tabDec3",
                                     tabPanel("Decision Table",

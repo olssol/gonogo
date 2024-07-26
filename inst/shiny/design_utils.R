@@ -28,7 +28,6 @@ func_tbl <- function() {
 
     colnames(tbl) <- paste0("observed difference=", delta_list)
 
-
     datatable(tbl,
               extensions = 'Buttons',
               options = list(
@@ -65,7 +64,7 @@ par_desn_dec <- reactive({
     if (dec_simp) {
         tv_o       <- input$inLRV
         rule_go    <- 1
-        rule_nogo  <- 1
+        rule_nogo  <- 2
         rule_opt   <- "gofirst"
     } else {
         tv_o       <- input$inTV
@@ -146,18 +145,23 @@ par_pp_obs <- reactive({
 })
 
 par_pp_dec <- reactive({
-    desn_dec <- par_desn_dec()
-
+    desn_dec   <- par_desn_dec()
     if (desn_dec$dec_simp) {
-        tv <- input$inLRV2
+        tv         <- input$inLRV2
+        lrv        <- input$inLRV2
+        thresh_lrv <- input$inThreshLRV2
+        thresh_tv  <- input$inThreshTV2
     } else {
-        tv <- input$inTV2
+        tv         <- input$in4TV2
+        lrv        <- input$in4LRV2
+        thresh_lrv <- input$in4ThreshLRV2
+        thresh_tv  <- input$in4ThreshTV2
     }
 
-    list(lrv          = input$inLRV2,
-         thresh_lrv   = input$inThreshLRV2,
-         thresh_tv    = input$inThreshTV2,
-         tv           = tv)
+    list(lrv          = lrv,
+         thresh_lrv   = thresh_lrv,
+         tv           = tv,
+         thresh_tv    = thresh_tv)
 })
 
 par_pp_obs_opt <- reactive({
@@ -218,9 +222,9 @@ plt_pp_post_obs <- reactive({
     pp_obs_opt <- par_pp_obs_opt()
     desn_dec   <- par_desn_dec()
     rst        <- plot(post_smps,
-                   option = pp_obs_opt$xaxis,
-                   alpha  = 0.1,
-                   adjust = 1.5) +
+                       option = pp_obs_opt$xaxis,
+                       alpha  = 0.1,
+                       adjust = 1.5) +
         theme_bw() +
         theme(text = element_text(size = 15))
 
@@ -372,15 +376,21 @@ par_opc_dec <- reactive({
     desn_dec <- par_desn_dec()
 
     if (desn_dec$dec_simp) {
-        tv <- input$inLRV3
+        tv         <- input$inLRV3
+        lrv        <- input$inLRV3
+        thresh_lrv <- input$inThreshLRV3
+        thresh_tv  <- input$inThreshTV3
     } else {
-        tv <- input$inTV3
+        tv         <- input$in4TV3
+        lrv        <- input$in4LRV3
+        thresh_lrv <- input$in4ThreshLRV3
+        thresh_tv  <- input$in4ThreshTV3
     }
 
-    list(lrv          = input$inLRV3,
-         thresh_lrv   = input$inThreshLRV3,
-         thresh_tv    = input$inThreshTV3,
-         tv           = tv)
+    list(lrv          = lrv,
+         thresh_lrv   = thresh_lrv,
+         tv           = tv,
+         thresh_tv    = thresh_tv)
 })
 
 par_opc_opt <- reactive({

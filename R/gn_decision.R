@@ -383,9 +383,7 @@ plot.CLS_OPC_BIN <- function(x,
                              option = c("line", "area"),
                              ...) {
     option <- match.arg(option)
-    x      <- data.frame(x) %>%
-        mutate(n1 = paste("Treatment Arm Size = ", n1, sep = ""))
-
+    x      <- data.frame(x)
     switch(option,
            line = gn_opc_bin_plot_line(x, ...),
            area = gn_opc_bin_plot_area(x, ...))

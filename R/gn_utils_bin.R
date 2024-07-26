@@ -369,7 +369,6 @@ plot.CLS_GONOGO_POSTS_SINGLE <- function(x, option = c("effect", "rate"), ...) {
     rst <- ggplot(data = dta, aes(x = x)) +
         theme_bw() +
         labs(y = "Density") +
-        xlim(0, 1) +
         theme(legend.position = "bottom")
 
     if ("effect" == option) {
@@ -377,6 +376,7 @@ plot.CLS_GONOGO_POSTS_SINGLE <- function(x, option = c("effect", "rate"), ...) {
             labs(x = "Treatment Effect")
     } else {
         rst <- rst +
+            xlim(0, 1) +
             labs(x = "Success Rate")
     }
 

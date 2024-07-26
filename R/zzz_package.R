@@ -22,7 +22,7 @@
 #' @importFrom data.table rbindlist
 #'
 #' @importFrom rstan sampling
-#' @importFrom mvtnorm rmvnorm pmvnorm dmvnorm
+# #' @importFrom mvtnorm rmvnorm pmvnorm dmvnorm
 #'
 #' @description Making go or no-go deceisions with Shiny applications.
 #'
