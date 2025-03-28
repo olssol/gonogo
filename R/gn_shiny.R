@@ -11,7 +11,7 @@
 #'
 gn_shiny <- function(appname = "shiny", pkgname = "gonogo") {
 
-    req_pkgs        <- c("shiny", "DT", "bsicon", "plotly")
+    req_pkgs        <- c("shiny", "DT", "bsicons", "plotly")
     chk_uninstalled <- sapply(req_pkgs,
                               function(x) {
         !requireNamespace(x, quietly = TRUE)

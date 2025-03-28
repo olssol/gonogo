@@ -8,3 +8,7 @@
 \description{
 Making go or no-go deceisions with Shiny applications.
 }
+\author{
+\strong{Maintainer}: Chenguang Wang \email{chenguang.wang.0517@gmail.com}
+
+}
