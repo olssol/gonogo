@@ -77,7 +77,7 @@ gn_beta_effect_posts <- function(n1, y1, n0 = NULL, y0 = NULL,
 #'
 #' @export
 #'
-gn_beta_effect_posts_all <- function(n1, ..., n_cores = 4) {
+gn_beta_effect_posts_all <- function(n1, ..., n_cores = 1) {
 
     y1  <- seq(0, n1)
     rst <- parallel::mclapply(y1, function(x) {
