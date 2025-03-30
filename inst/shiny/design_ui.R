@@ -395,7 +395,7 @@ tab_basic <- function() {
                      column(3,
                             numericInput("inNCores",
                                          "Number of parallel cores",
-                                         4))
+                                         1))
                  )
              ))
 }

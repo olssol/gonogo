@@ -86,7 +86,9 @@ gn_beta_effect_posts_all <- function(n1, ..., n_cores = 1) {
                              y1   = x,
                              ...)
 
-                     }, mc.cores = n_cores)
+                     },
+
+                     mc.cores = n_cores)
 
 
     rst_smps <- NULL
