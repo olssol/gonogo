@@ -198,13 +198,12 @@ gn_decision_binary_opc <- function(dec_tbl,
 
     rst    <- NULL
     for (ptrt in vec_true_rate_trt) {
-
         dec_tbl <- dec_tbl %>%
             mutate(prob = dbinom(y1, n1, ptrt))
 
         if (!is.null(dec_tbl$n0)) {
             dec_tbl <- dec_tbl %>%
-                mutate(prob = prob + dbinom(y0, n0, true_rate_ctl))
+                mutate(prob = prob * dbinom(y0, n0, true_rate_ctl))
         }
 
         cur_rst <- dec_tbl %>%

@@ -590,7 +590,7 @@ tab_opc <- function() {
                          column(3,
                                 numericInput(
                                     "rand_ratio",
-                                    label = "Random ratio (control vs. treatment)",
+                                    label = "Random ratio (ctl vs. trt)",
                                     value = 1)))
                  ),
 

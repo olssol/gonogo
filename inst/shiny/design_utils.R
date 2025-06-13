@@ -432,7 +432,6 @@ get_opc_dec_tbl <- reactive({
 
     opc_dec  <- par_opc_dec()
     desn_dec <- par_desn_dec()
-
     rst <- gn_decision_all(
         rst_comb,
         lrv        = opc_dec$lrv,
@@ -454,6 +453,7 @@ get_opc_tbl <- reactive({
 
     opc_truth <- par_opc_truth()
     opc_opt   <- par_opc_opt()
+
     rst_opc   <- gn_decision_binary_opc(
         dec_tbl$dec_table,
         opc_truth$true_trt,

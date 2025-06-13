@@ -4,7 +4,7 @@
 \alias{gn_beta_effect_posts_all}
 \title{Get posterior samples all}
 \usage{
-gn_beta_effect_posts_all(n1, ..., n_cores = 4)
+gn_beta_effect_posts_all(n1, ..., n_cores = 1)
 }
 \description{
 Get posterior samples all

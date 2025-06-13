@@ -1,6 +1,6 @@
 Package: gonogo
 Title: Making Go or No-go Decisions in Proof-of-Concept Trials
-Version: 3.2
+Version: 3.3
 Authors@R:
     person(given = "Chenguang",
            family = "Wang",
